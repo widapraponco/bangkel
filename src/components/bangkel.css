@@ -1,0 +1,31 @@
+.bang-search > input {
+    font-size: 12px;
+}
+
+.bang-search > .input-group-append > button  {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.figure {
+    background-image: url(../assets/figure1.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: right;
+}
+
+.cleaning {
+    background-image: url(../assets/cleaning.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: left;
+    background-position-y: center;
+}
+
+.repairing {
+    background-image: url(../assets/repairing.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: right;
+    background-position-y: bottom;
+}
