@@ -1,53 +1,49 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React, { useMemo } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
+import PropTypes from 'prop-types';
 
-/*
- * This component is built using `gatsby-image` to automatically serve optimized
- * images with lazy loading and reduced file sizes. The image is loaded using a
- * `useStaticQuery`, which allows us to load the image from directly within this
- * component, rather than having to pass the image data down from pages.
- *
- * For more information, see the docs:
- * - `gatsby-image`: https://gatsby.dev/gatsby-image
- * - `useStaticQuery`: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
-const Image = (props) => (
-  <StaticQuery
-    query={graphql`
-      query {
-        images: allFile {
-          edges {
-            node {
-              relativePath
-              name
-              childImageSharp {
-                sizes(maxWidth: 600) {
-                  ...GatsbyImageSharpSizes
-                }
+const Image = ({ src, ...rest }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      images: allFile(
+        filter: { internal: { mediaType: { regex: "/image/" } } }
+      ) {
+        edges {
+          node {
+            relativePath
+            extension
+            publicURL
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
         }
       }
-    `}
+    }
+  `);
 
-    render={(data) => {
-      const image = data.images.edges.find(n => {
-        return n.node.relativePath.includes(props.filename);
-      });
-      if (!image) { return null; }
-      
-      const imageSizes = image.node.childImageSharp.sizes;
-      return (
-        <Img
-          alt={props.alt}
-          sizes={imageSizes}
-        />
-      );
-    }}
-  />
-)
+  const match = useMemo(
+    () => data.images.edges.find(({ node }) => src === node.relativePath),
+    [data, src]
+  );
 
-export default Image
+  if (!match) return null;
+
+  const { node: { childImageSharp, publicURL, extension } = {} } = match;
+
+  if (extension === 'svg' || !childImageSharp) {
+    return <img src={publicURL} {...rest} />;
+  }
+
+  return <Img fluid={childImageSharp.fluid} {...rest} />;
+};
+
+Image.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+};
+
+export default Image;

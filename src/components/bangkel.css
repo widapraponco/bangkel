@@ -8,14 +8,14 @@
 }
 
 .figure {
-    background-image: url(../assets/figure1.svg);
+    background-image: url(../images/figure1.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: right;
 }
 
 .cleaning {
-    background-image: url(../assets/cleaning.svg);
+    background-image: url(../images/cleaning.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: left;
@@ -23,7 +23,7 @@
 }
 
 .repairing {
-    background-image: url(../assets/repairing.svg);
+    background-image: url(../images/repairing.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: right;

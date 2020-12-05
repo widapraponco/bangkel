@@ -3,23 +3,24 @@ import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Image from "../components/image"
 import {Container, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../components/bangkel.css"
-import step1 from "../assets/step1.svg"
-import step2 from "../assets/step2.svg"
-import step3 from "../assets/step3.svg"
+// import Step1 from "../assets/step1.svg"
+// import Step2 from "../assets/step2.svg"
+// import Step3 from "../assets/step3.svg"
 
 const steps = [
-  { alt: 'step1', svg: step1, text: 'Cari layanan yang diinginkan melalui website' },
-  { alt: 'step2', svg: step2, text: 'Setelah memilih layanan, anda akan diarahkan menuju aplikasi chat whatsapp/telegram kemudiam Atur jadwal' },
-  { alt: 'step3', svg: step3, text: 'Tunggu kami datang dan mengerjakan tugas kami, kemudian kendaraanmu siap digunakan' }
+  { alt: 'step1', src: "step1.png", text: 'Cari layanan yang diinginkan melalui website' },
+  { alt: 'step2', src: "step2.png", text: 'Setelah memilih layanan, anda akan diarahkan menuju aplikasi chat whatsapp/telegram kemudiam Atur jadwal' },
+  { alt: 'step3', src: "step3.png", text: 'Tunggu kami datang dan mengerjakan tugas kami, kemudian kendaraanmu siap digunakan' }
 ];
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Bangkel Bengkel Online" />
+    <SEO title="Bangkel Bengkel Pilihan" />
 
     <Container fluid>
       <Row>
@@ -61,9 +62,15 @@ const IndexPage = () => (
       <Row style={{padding: `0 75px 0 75px`}}>
         {
           steps.map(o => 
-            <Col md={4}>
+            <Col key={o.alt} md={4}>
               <div className="d-flex flex-column">
-                <img src={o.svg} height={200} alt={o.alt} />
+                <div style={{
+                  height: `200px`, 
+                  width: `200px`,
+                  margin: `0 auto`,
+                  marginBottom: `1.45rem`}}>
+                  <Image src={o.src} alt={o.alt} />
+                </div>
                 <span style={{
                   textAlign: `center`,
                   padding: `10px 20px`

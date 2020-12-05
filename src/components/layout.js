@@ -58,7 +58,7 @@ const Layout = ({ children }) => {
                     </Link>
                   </h1>
                   <p style={{paddingRight: `75px`}}>
-                    CV. General Service Engineerin
+                    CV. General Service Engineering
                     Perum. Taman Aloha Blok B5 no. 1
                     Kecamatan Sukodono, Kabupaten Sidoarjo
                     61257
