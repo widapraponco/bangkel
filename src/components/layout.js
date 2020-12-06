@@ -12,7 +12,8 @@ import { Link } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-import {Container, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
+import BangSearch from "../components/bang-search";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => {
@@ -66,16 +67,7 @@ const Layout = ({ children }) => {
                 </div>
               </Col>
               <Col className="d-flex align-items-center justify-content-center">
-                <InputGroup className="mb-3 bang-search">
-                  <FormControl
-                    placeholder="Cuci Mobil, Cuci Motor, Gantil Oli, Tambal ban, dll"
-                    aria-label="Cuci Mobil, Cuci Motor, Gantil Oli, Tambal ban, dll"
-                    aria-describedby="basic-addon2"
-                  />
-                  <InputGroup.Append>
-                    <Button variant="danger">ATUR JANJI</Button>
-                  </InputGroup.Append>
-                </InputGroup>
+                <BangSearch />
               </Col>
             </Row>
             <Row>

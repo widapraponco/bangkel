@@ -4,7 +4,8 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Image from "../components/image"
-import {Container, Row, Col, InputGroup, FormControl, Button} from 'react-bootstrap';
+import {Container, Row, Col, Button} from 'react-bootstrap';
+import BangSearch from "../components/bang-search";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../components/bangkel.css"
@@ -33,16 +34,7 @@ const IndexPage = () => (
         }}>
           <h4 className="mb-4">Perbaikan dan Perawatan Kendaraan Mudah dan Terjadwal</h4>
           <p className="mb-4">Rawat kendaraan anda tanpa antri dan tanpa mengganggu kesibukan anda. Serahkan perawatan secara optimal kepada kami</p>
-          <InputGroup className="mb-3 bang-search">
-            <FormControl
-              placeholder="Cuci Mobil, Cuci Motor, Gantil Oli, Tambal ban, dll"
-              aria-label="Cuci Mobil, Cuci Motor, Gantil Oli, Tambal ban, dll"
-              aria-describedby="basic-addon2"
-            />
-            <InputGroup.Append>
-              <Button variant="danger">ATUR JANJI</Button>
-            </InputGroup.Append>
-          </InputGroup>
+          <BangSearch />
         </Col>
         <Col 
           className="figure"
