@@ -4,6 +4,8 @@ module.exports = {
   siteMetadata: {
     title: `bangkel`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    confirm: {title: `Hore, Permintaan anda berhasil!`, description: `kami akan segera menghubungimu melalui nomor Whatsapp/Telegram yang telah anda cantumkan pada formulir sebelumnya untuk melakukan konfirmasi`},
+    error: {title: `Mohon maaf, terjadi kesalahan`, description: `Coba beberapa saat lagi, terjadi kesalahan pada sistem`},
     author: `@gatsbyjs`,
   },
   plugins: [

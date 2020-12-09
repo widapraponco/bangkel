@@ -101,6 +101,7 @@ const BangSearch = (props) => {
   <AppointmentForm show={modalShow} service={selectedService} onHide={(e) => {
     setModalShow(false);
     //is submit with data
+    console.log(e);
     if (e) props.onSubmit(e);
   }}/>
   </>);

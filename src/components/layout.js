@@ -16,6 +16,7 @@ import {Container, Row, Col, Spinner} from 'react-bootstrap';
 import BangSearch from "../components/bang-search";
 import ConfirmationPopup from "../components/confirmation-popup";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -30,20 +31,27 @@ const Layout = ({ children }) => {
 
   const [isSubmited, setSubmit] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isSuccess, setSuccess] = useState(false);
 
-  const handleSubmitService = () => {
+  const handleSubmitService = (value) => {
     setSubmit(true);
-    setTimeout(() => {
+
+    //store customer order
+    console.log(value)
+    axios.post('http://localhost:3000/order', value).then(res => {
       setSubmit(false);
       setShowConfirm(true);
-    }, 3000);
-
-
+      setSuccess(true);
+    }, err => {
+      setSubmit(false);
+      setShowConfirm(true);
+      setSuccess(false);
+    })
   }
 
   return (
     <>
-    <ConfirmationPopup show={showConfirm} success={true} onHide={() => setShowConfirm(false)}/>
+    <ConfirmationPopup show={showConfirm} success={isSuccess} onHide={() => setShowConfirm(false)}/>
       {
           isSubmited ?
               <div className="overlay-loading">

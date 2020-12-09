@@ -60,7 +60,7 @@ const AppointmentForm = ({service, ...props}) => {
                     setValidated(false);
 
                     //close modal
-                    props.onHide(true);
+                    props.onHide(formValue);
                 } else {
                     setValidated(true);
                 }
