@@ -29,14 +29,14 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: "gatsby-plugin-react-svg",
-      options: {
-        rule: {
-          include: /assets/ // See below to configure properly
-        }
-      }
-    },
+    // {
+    //   resolve: "gatsby-plugin-react-svg",
+    //   options: {
+    //     rule: {
+    //       include: /assets/ // See below to configure properly
+    //     }
+    //   }
+    // },
     {
       resolve: `gatsby-source-mysql`,
       options: {
@@ -50,12 +50,15 @@ module.exports = {
           {
             statement: 'SELECT * FROM services',
             idFieldName: 'service_id',
-            name: 'name'
+            name: 'services'
           },
           {
             statement: 'SELECT * FROM prices',
             idFieldName: 'price_id',
-            name: 'amount'
+            name: 'prices',
+            parentName: 'services',
+            foreignKey: 'service_id',
+            cardinality: 'OneToMany'
           }
         ]
       }

@@ -5,15 +5,16 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import React, {useState} from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Spinner} from 'react-bootstrap';
 import BangSearch from "../components/bang-search";
+import ConfirmationPopup from "../components/confirmation-popup";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => {
@@ -27,8 +28,28 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const [isSubmited, setSubmit] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const handleSubmitService = () => {
+    setSubmit(true);
+    setTimeout(() => {
+      setSubmit(false);
+      setShowConfirm(true);
+    }, 3000);
+
+
+  }
+
   return (
     <>
+    <ConfirmationPopup show={showConfirm} success={true} onHide={() => setShowConfirm(false)}/>
+      {
+          isSubmited ?
+              <div className="overlay-loading">
+                  <Spinner animation="grow" variant="danger" />
+              </div> : <></>
+      }
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -37,7 +58,30 @@ const Layout = ({ children }) => {
           // padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <main>
+          <Container fluid>
+            <Row>
+              <Col md={6} style={{
+                paddingLeft: `75px`,
+                display: `flex`,
+                flexDirection: `column`,
+                alignItems: `center`,
+                justifyContent: `center`
+              }}>
+                <h4 className="mb-4">Perbaikan dan Perawatan Kendaraan Mudah dan Terjadwal</h4>
+                <p className="mb-4">Rawat kendaraan anda tanpa antri dan tanpa mengganggu kesibukan anda. Serahkan perawatan secara optimal kepada kami</p>
+                <BangSearch onSubmit={handleSubmitService}/>
+              </Col>
+              <Col 
+                className="figure"
+                style={{
+                  minHeight: `calc(100vh - 150px)`
+                }}>
+              </Col>
+            </Row>
+          </Container>
+          {children}
+        </main>
         <footer style={{
           // marginTop: `2rem`,
           backgroundColor: `#C4C4C4`
@@ -67,7 +111,7 @@ const Layout = ({ children }) => {
                 </div>
               </Col>
               <Col className="d-flex align-items-center justify-content-center">
-                <BangSearch />
+                <BangSearch onSubmit={handleSubmitService}/>
               </Col>
             </Row>
             <Row>
